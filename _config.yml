@@ -1,0 +1,7 @@
+title: Chromebook Accessibility Toolkit for CS Classroom
+description: Keyboard navigation resources for computer science education
+baseurl: "/chromebook-cs-accessibility-toolkit"
+url: "https://louiseclarka11y.github.io"
+
+# Keep it simple - no plugins, no complex builds
+markdown: kramdown

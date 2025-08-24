@@ -1,0 +1,16 @@
+<!-- Following Heydon Pickering's inclusive card pattern -->
+<article class="card{% if include.link %} card--linked{% endif %}">
+    <h2>
+        {% if include.link %}
+            <a href="{{ include.link }}" class="card__link">{{ include.title }}</a>
+        {% else %}
+            {{ include.title }}
+        {% endif %}
+    </h2>
+    <p>{{ include.description }}</p>
+    {% if include.meta %}
+        <footer>
+            <small>{{ include.meta }}</small>
+        </footer>
+    {% endif %}
+</article>
