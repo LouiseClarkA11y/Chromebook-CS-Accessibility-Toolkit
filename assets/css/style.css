@@ -326,7 +326,8 @@ footer {
   }
 }
 
-* Responsive navigation */ @media (max-width: 768px) {
+/* Responsive navigation */
+@media (max-width: 768px) {
   nav {
     flex-direction: column;
     gap: var(--space-s);
