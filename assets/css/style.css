@@ -1,4 +1,4 @@
-/* Modern CSS Reset with Accessibility Focus */
+/* Modern CSS Reset with Accessibility Focus following Stephanie Eckles practice */
 *,
 *::before,
 *::after {
@@ -316,5 +316,64 @@ footer {
   /* Page margins */
   @page {
     margin: 2cm;
+  }
+}
+
+* Responsive navigation */ @media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  nav a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  :root {
+    --step-0: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+    --step-1: clamp(1.05rem, 0.95rem + 0.5vw, 1.2rem);
+    --step-2: clamp(1.26rem, 1.14rem + 0.6vw, 1.44rem);
+  }
+}
+
+/* Responsive cards */
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-m);
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+  }
+}
+
+/* Responsive main content */
+@media (max-width: 480px) {
+  main {
+    padding-inline: var(--space-s);
+    padding-block: var(--space-l);
+  }
+
+  .card li {
+    grid-template-columns: 2rem 1fr;
+    gap: var(--space-xs);
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive tables (future use) */
+@media (max-width: 640px) {
+  table {
+    font-size: var(--step--1);
   }
 }
