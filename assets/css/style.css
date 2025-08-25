@@ -214,8 +214,9 @@ main {
   margin-block: var(--space-xl);
 }
 
-/* Keyboard shortcuts styling */
 kbd {
+  min-height: auto;
+  min-width: auto;
   display: inline-block;
   padding: 0.125em 0.5em;
   margin-inline: 0.125em;
@@ -225,6 +226,12 @@ kbd {
   font-family: ui-monospace, monospace;
   font-size: 0.875em;
   white-space: nowrap;
+}
+
+/* Ensure kbd elements inside lists don't stretch */
+.card li kbd {
+  flex: none;
+  align-self: start;
 }
 
 /* Ordered list with custom counters */
