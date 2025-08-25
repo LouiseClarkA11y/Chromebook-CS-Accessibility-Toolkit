@@ -5,3 +5,7 @@ url: "https://louiseclarka11y.github.io"
 
 # Keep it simple - no plugins, no complex builds
 markdown: kramdown
+
+# Explicitly include assets
+include:
+  - assets
