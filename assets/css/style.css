@@ -1,236 +1,320 @@
-/* Modern CSS following Stephanie Eckles' practices */
+/* Modern CSS Reset with Accessibility Focus */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+/* Custom Properties for Design Tokens */
 :root {
-    /* Fluid type scale */
-    --step--1: clamp(0.94rem, calc(0.92rem + 0.08vw), 1rem);
-    --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
-    --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
-    
-    /* Semantic color tokens */
-    --color-text: #212529;
-    --color-background: #ffffff;
-    --color-primary: #005a9c;
-    --color-focus: #fd7e14;
-    --color-border: #767676;
-    
-    /* Spacing scale */
-    --space-xs: clamp(0.75rem, calc(0.69rem + 0.29vw), 0.9375rem);
-    --space-s: clamp(1rem, calc(0.92rem + 0.39vw), 1.25rem);
-    --space-m: clamp(1.5rem, calc(1.39rem + 0.58vw), 1.875rem);
-    
-    /* Layout tokens */
-    --content-width: min(45rem, 100% - 2rem);
-    --focus-offset: 0.25rem;
+  /* Fluid Type Scale */
+  --step--1: clamp(0.833rem, 0.79rem + 0.217vw, 0.937rem);
+  --step-0: clamp(1rem, 0.909rem + 0.454vw, 1.25rem);
+  --step-1: clamp(1.2rem, 1.091rem + 0.545vw, 1.5rem);
+  --step-2: clamp(1.44rem, 1.309rem + 0.654vw, 1.8rem);
+
+  /* Fluid Space Scale */
+  --space-xs: clamp(0.5rem, 0.454rem + 0.227vw, 0.625rem);
+  --space-s: clamp(0.75rem, 0.682rem + 0.341vw, 0.938rem);
+  --space-m: clamp(1rem, 0.909rem + 0.454vw, 1.25rem);
+  --space-l: clamp(1.5rem, 1.364rem + 0.682vw, 1.875rem);
+  --space-xl: clamp(2rem, 1.818rem + 0.909vw, 2.5rem);
+
+  /* Colors with HSL for easy manipulation */
+  --color-text: hsl(210, 11%, 15%);
+  --color-background: hsl(0, 0%, 100%);
+  --color-surface: hsl(210, 17%, 95%);
+  --color-primary: hsl(211, 100%, 35%);
+  --color-focus: hsl(27, 96%, 61%);
+  --color-border: hsl(210, 14%, 53%);
+
+  /* Layout */
+  --content-width: min(65ch, 100% - 2rem);
+  --focus-offset: 0.25rem;
+  --border-radius: 0.5rem;
 }
 
-/* Modern reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: var(--step-0);
-    line-height: 1.6;
-    color: var(--color-text);
-    background: var(--color-background);
-}
-
-/* Skip link - visible on focus */
-.skip-link {
-    position: absolute;
-    top: -100%;
-    left: 0;
-    background: var(--color-primary);
-    color: white;
-    padding: var(--space-xs) var(--space-s);
-    text-decoration: none;
-    border-radius: 0 0 0.25rem 0;
-    z-index: 999;
-}
-
-.skip-link:focus {
-    top: 0;
-}
-
-/* Focus styles using :focus-visible for better UX */
-:focus {
-    outline: none;
-}
-
-:focus-visible {
-    outline: 3px solid var(--color-focus);
-    outline-offset: var(--focus-offset);
-}
-
-/* Layout using modern CSS Grid */
-body {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
-}
-
-/* Container using logical properties */
-.container {
-    width: var(--content-width);
-    margin-inline: auto;
-    padding-block: var(--space-m);
-}
-
-/* Navigation with flexbox and gap */
-nav {
-    display: flex;
-    gap: var(--space-m);
-    flex-wrap: wrap;
-    padding: var(--space-s);
-}
-
-/* Card component following Heydon Pickering's inclusive pattern */
-.card {
-    /* Containing block for absolute positioning */
-    position: relative;
-    
-    /* Visual design */
-    border: 2px solid var(--color-border);
-    border-radius: 0.5rem;
-    padding: var(--space-m);
-    margin-block: var(--space-m);
-    
-    /* Ensure cards are keyboard accessible */
-    container-type: inline-size;
-}
-
-/* Card with link - Carie Fisher's click target pattern */
-.card--linked {
-    transition: transform 200ms ease-out;
-}
-
-.card--linked:hover {
-    transform: translateY(-2px);
-}
-
-/* Inclusive click target */
-.card__link::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-}
-
-/* Ensure other interactive elements are clickable */
-.card__link ~ * {
-    position: relative;
-    z-index: 1;
-}
-
-/* Card grid using modern CSS Grid */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-    gap: var(--space-m);
-}
-
-/* Print styles */
-@media print {
-    /* Hide non-essential elements */
-    .skip-link,
-    nav,
-    footer {
-        display: none;
-    }
-    
-    /* Ensure cards don't break across pages */
-    .card {
-        break-inside: avoid;
-    }
-    
-    /* Reset colors for print */
-    * {
-        color: black !important;
-        background: white !important;
-    }
-}
-
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+/* Dark mode with proper contrast ratios */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: hsl(210, 17%, 95%);
+    --color-background: hsl(210, 11%, 15%);
+    --color-surface: hsl(210, 11%, 23%);
+    --color-primary: hsl(211, 100%, 70%);
+    --color-border: hsl(210, 14%, 66%);
+  }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-    :root {
-        --color-text: black;
-        --color-background: white;
-        --color-border: black;
-    }
+  :root {
+    --color-text: hsl(0, 0%, 0%);
+    --color-background: hsl(0, 0%, 100%);
+    --color-primary: hsl(240, 100%, 50%);
+    --color-focus: hsl(300, 100%, 50%);
+    --color-border: hsl(0, 0%, 0%);
+  }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-text: #f8f9fa;
-        --color-background: #212529;
-        --color-primary: #6ea8fe;
-        --color-border: #dee2e6;
-    }
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Keyboard shortcut styles */
+/* Base typography with logical properties */
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modern focus styles */
+:focus {
+  outline: 3px solid transparent;
+  outline-offset: var(--focus-offset);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline-color: var(--color-focus);
+}
+
+/* Skip link - accessible and visible on focus */
+.skip-link {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: -100%;
+  z-index: 999;
+  padding: var(--space-s) var(--space-m);
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  text-decoration: none;
+  border-radius: 0 0 var(--border-radius) 0;
+}
+
+.skip-link:focus {
+  inset-block-start: 0;
+}
+
+/* Improved link styling */
+a {
+  color: var(--color-primary);
+  text-decoration-thickness: max(0.08em, 1px);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-thickness 200ms ease;
+}
+
+a:hover {
+  text-decoration-thickness: max(0.12em, 2px);
+}
+
+/* Ensure touch targets meet minimum size */
+a,
+button,
+input,
+select,
+textarea,
+summary {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-s);
+}
+
+/* Container with logical properties */
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-m);
+  padding-block: var(--space-l);
+}
+
+/* Header and navigation */
+header {
+  background-color: var(--color-surface);
+  padding-block: var(--space-m);
+  border-block-end: 1px solid var(--color-border);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  align-items: center;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-m);
+}
+
+/* Main content area */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-m);
+  padding-block: var(--space-xl);
+}
+
+/* Modern card component */
+.card {
+  container-type: inline-size;
+  padding: var(--space-l);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  margin-block: var(--space-m);
+}
+
+.card:has(a) {
+  position: relative;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card:has(a):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px hsl(0 0% 0% / 0.15);
+}
+
+/* Inclusive click target for cards */
+.card h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* Grid layout with modern CSS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-l);
+  margin-block: var(--space-xl);
+}
+
+/* Keyboard shortcuts styling */
 kbd {
-    display: inline-block;
-    padding: 0.125em 0.5em;
-    margin: 0 0.125em;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    font-family: ui-monospace, monospace;
-    font-size: 0.875em;
+  display: inline-block;
+  padding: 0.125em 0.5em;
+  margin-inline: 0.125em;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.875em;
+  white-space: nowrap;
 }
 
-/* Dark mode keyboard keys */
-@media (prefers-color-scheme: dark) {
-    kbd {
-        background-color: #343a40;
-        border-color: #495057;
-    }
-}
-
-/* Shortcut list styling */
+/* Ordered list with custom counters */
 .card ol {
-    list-style: none;
-    counter-reset: shortcuts;
-    padding: 0;
+  list-style: none;
+  counter-reset: shortcuts;
+  padding: 0;
 }
 
 .card li {
-    counter-increment: shortcuts;
-    display: grid;
-    grid-template-columns: 2rem 1fr;
-    gap: 1rem;
-    margin-block: var(--space-s);
-    align-items: center;
+  counter-increment: shortcuts;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: var(--space-s);
+  margin-block: var(--space-m);
+  align-items: start;
 }
 
 .card li::before {
-    content: counter(shortcuts);
-    display: grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    background: var(--color-primary);
-    color: white;
-    border-radius: 50%;
-    font-weight: bold;
+  content: counter(shortcuts);
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: var(--step--1);
 }
 
 .card li span {
-    display: block;
-    margin-top: 0.25rem;
-    color: var(--color-text);
-    opacity: 0.8;
+  display: block;
+  margin-block-start: var(--space-xs);
+  opacity: 0.85;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-surface);
+  padding-block: var(--space-l);
+  margin-block-start: auto;
+  border-block-start: 1px solid var(--color-border);
+  text-align: center;
+}
+
+/* Utility: Visually hidden but accessible */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Print styles */
+@media print {
+  /* Hide interactive elements */
+  .skip-link,
+  nav,
+  footer {
+    display: none;
+  }
+
+  /* Reset colors for print */
+  * {
+    color: black !important;
+    background: white !important;
+  }
+
+  /* Ensure cards don't break */
+  .card {
+    break-inside: avoid;
+    border: 2pt solid black;
+    margin-block: 1rem;
+  }
+
+  /* Show URLs */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.875em;
+    opacity: 0.7;
+  }
+
+  /* Page margins */
+  @page {
+    margin: 2cm;
+  }
 }
