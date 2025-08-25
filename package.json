@@ -1,0 +1,28 @@
+{
+  "name": "chromebook-cs-accessibility-toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louiseclarka11y/chromebook-cs-accessibility-toolkit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/louiseclarka11y/chromebook-cs-accessibility-toolkit/issues"
+  },
+  "homepage": "https://github.com/louiseclarka11y/chromebook-cs-accessibility-toolkit#readme",
+  "devDependencies": {
+    "@eslint/css": "^0.10.0",
+    "@eslint/js": "^9.34.0",
+    "eslint": "^9.34.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "globals": "^16.3.0"
+  }
+}
