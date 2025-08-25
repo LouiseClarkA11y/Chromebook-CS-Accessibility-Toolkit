@@ -86,6 +86,35 @@ body {
   flex-direction: column;
 }
 
+/* Remove default margins for consistent spacing */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+/* Modern heading improvements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Scroll margin for anchor links */
+[id] {
+  scroll-margin-top: 2rem;
+}
+
 /* Modern focus styles */
 :focus {
   outline: 3px solid transparent;
@@ -129,10 +158,11 @@ a:hover {
   text-decoration-thickness: max(0.12em, 2px);
 }
 
-/* Ensure touch targets meet minimum size */
-a,
+/* Interactive form controls that need touch targets */
 button,
-input,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
 select,
 textarea,
 summary {
@@ -141,6 +171,24 @@ summary {
   display: inline-flex;
   align-items: center;
   padding: var(--space-xs) var(--space-s);
+}
+
+/* Navigation links specifically */
+nav a {
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-s);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Regular text links */
+p a,
+li a,
+footer a {
+  display: inline;
+  min-height: initial;
+  min-width: initial;
+  padding: 0;
 }
 
 /* Container with logical properties */
@@ -169,7 +217,7 @@ nav {
   padding-inline: var(--space-m);
 }
 
-/* Main content area */
+/* Main content area with contextual spacing */
 main {
   flex: 1;
   width: 100%;
@@ -179,6 +227,16 @@ main {
   padding-block: var(--space-xl);
 }
 
+/* Contextual spacing for main content */
+main > * + * {
+  margin-top: var(--space-l);
+}
+
+/* Section spacing */
+section + section {
+  margin-top: var(--space-xl);
+}
+
 /* Modern card component */
 .card {
   container-type: inline-size;
@@ -186,7 +244,12 @@ main {
   background-color: var(--color-surface);
   border: 2px solid var(--color-border);
   border-radius: var(--border-radius);
-  margin-block: var(--space-m);
+  width: 100%;
+}
+
+/* Contextual spacing within cards */
+.card > * + * {
+  margin-top: var(--space-m);
 }
 
 .card:has(a) {
@@ -200,7 +263,8 @@ main {
 }
 
 /* Inclusive click target for cards */
-.card h2 a::after {
+.card h2 a::after,
+.card h3 a::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -211,12 +275,10 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
   gap: var(--space-l);
-  margin-block: var(--space-xl);
 }
 
+/* Keyboard shortcuts styling */
 kbd {
-  min-height: auto;
-  min-width: auto;
   display: inline-block;
   padding: 0.125em 0.5em;
   margin-inline: 0.125em;
@@ -226,12 +288,6 @@ kbd {
   font-family: ui-monospace, monospace;
   font-size: 0.875em;
   white-space: nowrap;
-}
-
-/* Ensure kbd elements inside lists don't stretch */
-.card li kbd {
-  flex: none;
-  align-self: start;
 }
 
 /* Ordered list with custom counters */
@@ -246,8 +302,12 @@ kbd {
   display: grid;
   grid-template-columns: 2.5rem 1fr;
   gap: var(--space-s);
-  margin-block: var(--space-m);
   align-items: start;
+}
+
+/* Contextual spacing for list items */
+.card li + li {
+  margin-top: var(--space-s);
 }
 
 .card li::before {
@@ -276,6 +336,11 @@ footer {
   margin-block-start: auto;
   border-block-start: 1px solid var(--color-border);
   text-align: center;
+}
+
+/* Modal for future use */
+.modal {
+  overscroll-behavior: contain;
 }
 
 /* Utility: Visually hidden but accessible */
@@ -310,7 +375,6 @@ footer {
   .card {
     break-inside: avoid;
     border: 2pt solid black;
-    margin-block: 1rem;
   }
 
   /* Show URLs */
