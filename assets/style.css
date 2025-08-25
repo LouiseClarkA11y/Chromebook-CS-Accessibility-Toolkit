@@ -1,0 +1,236 @@
+/* Modern CSS following Stephanie Eckles' practices */
+:root {
+    /* Fluid type scale */
+    --step--1: clamp(0.94rem, calc(0.92rem + 0.08vw), 1rem);
+    --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+    --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+    
+    /* Semantic color tokens */
+    --color-text: #212529;
+    --color-background: #ffffff;
+    --color-primary: #005a9c;
+    --color-focus: #fd7e14;
+    --color-border: #767676;
+    
+    /* Spacing scale */
+    --space-xs: clamp(0.75rem, calc(0.69rem + 0.29vw), 0.9375rem);
+    --space-s: clamp(1rem, calc(0.92rem + 0.39vw), 1.25rem);
+    --space-m: clamp(1.5rem, calc(1.39rem + 0.58vw), 1.875rem);
+    
+    /* Layout tokens */
+    --content-width: min(45rem, 100% - 2rem);
+    --focus-offset: 0.25rem;
+}
+
+/* Modern reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: var(--step-0);
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-background);
+}
+
+/* Skip link - visible on focus */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-xs) var(--space-s);
+    text-decoration: none;
+    border-radius: 0 0 0.25rem 0;
+    z-index: 999;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Focus styles using :focus-visible for better UX */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: var(--focus-offset);
+}
+
+/* Layout using modern CSS Grid */
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Container using logical properties */
+.container {
+    width: var(--content-width);
+    margin-inline: auto;
+    padding-block: var(--space-m);
+}
+
+/* Navigation with flexbox and gap */
+nav {
+    display: flex;
+    gap: var(--space-m);
+    flex-wrap: wrap;
+    padding: var(--space-s);
+}
+
+/* Card component following Heydon Pickering's inclusive pattern */
+.card {
+    /* Containing block for absolute positioning */
+    position: relative;
+    
+    /* Visual design */
+    border: 2px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: var(--space-m);
+    margin-block: var(--space-m);
+    
+    /* Ensure cards are keyboard accessible */
+    container-type: inline-size;
+}
+
+/* Card with link - Carie Fisher's click target pattern */
+.card--linked {
+    transition: transform 200ms ease-out;
+}
+
+.card--linked:hover {
+    transform: translateY(-2px);
+}
+
+/* Inclusive click target */
+.card__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+/* Ensure other interactive elements are clickable */
+.card__link ~ * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Card grid using modern CSS Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--space-m);
+}
+
+/* Print styles */
+@media print {
+    /* Hide non-essential elements */
+    .skip-link,
+    nav,
+    footer {
+        display: none;
+    }
+    
+    /* Ensure cards don't break across pages */
+    .card {
+        break-inside: avoid;
+    }
+    
+    /* Reset colors for print */
+    * {
+        color: black !important;
+        background: white !important;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text: black;
+        --color-background: white;
+        --color-border: black;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: #f8f9fa;
+        --color-background: #212529;
+        --color-primary: #6ea8fe;
+        --color-border: #dee2e6;
+    }
+}
+
+/* Keyboard shortcut styles */
+kbd {
+    display: inline-block;
+    padding: 0.125em 0.5em;
+    margin: 0 0.125em;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.875em;
+}
+
+/* Dark mode keyboard keys */
+@media (prefers-color-scheme: dark) {
+    kbd {
+        background-color: #343a40;
+        border-color: #495057;
+    }
+}
+
+/* Shortcut list styling */
+.card ol {
+    list-style: none;
+    counter-reset: shortcuts;
+    padding: 0;
+}
+
+.card li {
+    counter-increment: shortcuts;
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
+    margin-block: var(--space-s);
+    align-items: center;
+}
+
+.card li::before {
+    content: counter(shortcuts);
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.card li span {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text);
+    opacity: 0.8;
+}
