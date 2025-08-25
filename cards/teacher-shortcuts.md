@@ -10,24 +10,44 @@ title: Essential Shortcuts for Teachers
     
     <ol>
         <li>
-            <kbd>Alt</kbd> + <kbd>Tab</kbd>
-            <span>Switch between apps without clicking</span>
+            <div class="shortcut-content">
+                <div class="keys">
+                    <kbd>Alt</kbd> + <kbd>Tab</kbd>
+                </div>
+                <span>Switch between apps without clicking</span>
+            </div>
         </li>
         <li>
-            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>
-            <span>Bring back closed tabs (saves panic!)</span>
+            <div class="shortcut-content">
+                <div class="keys">
+                    <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>
+                </div>
+                <span>Bring back closed tabs (saves panic!)</span>
+            </div>
         </li>
         <li>
-            <kbd>Ctrl</kbd> + <kbd>Plus/Minus</kbd>
-            <span>Zoom for visibility</span>
+            <div class="shortcut-content">
+                <div class="keys">
+                    <kbd>Ctrl</kbd> + <kbd>Plus/Minus</kbd>
+                </div>
+                <span>Zoom for visibility</span>
+            </div>
         </li>
         <li>
-            <kbd>Search</kbd> + <kbd>L</kbd>
-            <span>Lock when stepping away</span>
+            <div class="shortcut-content">
+                <div class="keys">
+                    <kbd>Search</kbd> + <kbd>L</kbd>
+                </div>
+                <span>Lock when stepping away</span>
+            </div>
         </li>
         <li>
-            <kbd>Ctrl</kbd> + <kbd>F</kbd>
-            <span>Find anything on the page</span>
+            <div class="shortcut-content">
+                <div class="keys">
+                    <kbd>Ctrl</kbd> + <kbd>F</kbd>
+                </div>
+                <span>Find anything on the page</span>
+            </div>
         </li>
     </ol>
 </div>

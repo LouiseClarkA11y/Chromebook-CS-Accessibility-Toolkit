@@ -390,6 +390,18 @@ footer {
   }
 }
 
+.shortcut-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.shortcut-content .keys {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
 /* Responsive navigation */
 @media (max-width: 768px) {
   nav {
@@ -441,6 +453,18 @@ footer {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Make shortcut content responsive on small screens */
+
+@media (max-width: 480px) {
+  .shortcut-content {
+    gap: 0.25rem;
+  }
+
+  .shortcut-content .keys {
+    gap: 0.125rem;
+  }
 }
 
 /* Responsive tables (future use) */
